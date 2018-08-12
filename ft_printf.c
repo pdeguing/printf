@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 19:09:41 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/08/11 19:19:04 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/08/11 19:47:50 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		ft_printf(const char *format, ...)
 {
 	ft_putendl(format);
-	return (0);
+	return (ft_strlen(format));
 }
 
 
