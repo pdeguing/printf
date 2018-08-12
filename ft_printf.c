@@ -1,16 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/11 17:30:59 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/08/11 17:32:26 by pdeguing         ###   ########.fr       */
+/*   Created: 2018/08/11 19:09:41 by pdeguing          #+#    #+#             */
+/*   Updated: 2018/08/11 19:19:04 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#include "ft_printf.h"
 
-#endif
+int		ft_printf(const char *format, ...)
+{
+	ft_putendl(format);
+	return (0);
+}
+
+

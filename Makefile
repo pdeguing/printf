@@ -6,13 +6,13 @@
 #    By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/11 17:16:33 by pdeguing          #+#    #+#              #
-#    Updated: 2018/08/11 18:28:03 by pdeguing         ###   ########.fr        #
+#    Updated: 2018/08/11 19:08:37 by pdeguing         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = printf
+NAME = ft_printf
 CFLAG = -Wall -Wextra -Werror
-SRC = main.c printf.c
+SRC = main.c ft_printf.c
 INCLUDE = -I /libft
 LIB = -lft -L./libft/
 LIBFT = libft/libft.a

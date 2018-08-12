@@ -6,13 +6,16 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 17:32:32 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/08/11 17:33:44 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/08/11 19:17:59 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-int		main()
+int		main(int argc, char **argv)
 {
+	if (argc < 2)
+		return (ft_printf("error\n"));
+	ft_printf(argv[1]);
 	return (0);
 }
