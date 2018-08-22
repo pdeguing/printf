@@ -1,39 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   put_hexa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/11 19:09:41 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/08/21 16:47:28 by pdeguing         ###   ########.fr       */
+/*   Created: 2018/08/21 16:43:47 by pdeguing          #+#    #+#             */
+/*   Updated: 2018/08/21 17:11:19 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_printf(const char *format, ...)
+int		put_hexa(int n)
 {
-	va_list	args_list;
 	int		char_count;
-	int		i;
 
-	va_start(args_list, format);
-	i = 0;
 	char_count = 0;
-	while (format[i])
+	if (n < 0)
 	{
-		if (format[i] != '%')
-		{
-			ft_putchar(format[i]);
-			char_count++;
-			i++;
-		}
-		if (format[i] == '%')
-			char_count += start_conversion(&i, format, args_list);
+		ft_putchar('-');
+		n *= -1;
 	}
-	va_end(args_list);
+	if (n >= 16)
+		char_count += put_octal(n / 16);
+	if ((n % 16) == 10)
+		ft_putchar('a');
+	if ((n % 16) == 11)
+		ft_putchar('b');
+	if ((n % 16) == 12)
+		ft_putchar('c');
+	if ((n % 16) == 13)
+		ft_putchar('d');
+	if ((n % 16) == 14)
+		ft_putchar('e');
+	if ((n % 16) == 15)
+		ft_putchar('f');
+	else if ((n % 16) <= 9)
+		ft_putchar((n % 16) + '0');
 	return (char_count);
 }
-
-

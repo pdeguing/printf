@@ -6,13 +6,13 @@
 #    By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/11 17:16:33 by pdeguing          #+#    #+#              #
-#    Updated: 2018/08/11 19:08:37 by pdeguing         ###   ########.fr        #
+#    Updated: 2018/08/21 17:04:03 by pdeguing         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ft_printf
+NAME = ft_printf 
 CFLAG = -Wall -Wextra -Werror
-SRC = main.c ft_printf.c
+SRC = main.c ft_printf.c start_conversion.c put_octal.c put_hexa.c
 INCLUDE = -I /libft
 LIB = -lft -L./libft/
 LIBFT = libft/libft.a

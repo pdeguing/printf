@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   put_octal.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/11 17:30:59 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/08/21 17:04:00 by pdeguing         ###   ########.fr       */
+/*   Created: 2018/08/21 16:31:26 by pdeguing          #+#    #+#             */
+/*   Updated: 2018/08/21 16:43:38 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include "libft/libft.h"
-# include <stdarg.h>
+#include "ft_printf.h"
 
-int		put_hexa(int n);
-int		put_octal(int n);
-int		start_conversion(int *i, const char *format, va_list args_list);
+int		put_octal(int n)
+{
+	int		char_count;
 
-int		ft_printf(const char *format, ...);
-
-#endif
+	char_count = 0;
+	if (n < 0)
+	{
+		ft_putchar('-');
+		n *= -1;
+	}
+	if (n >= 8)
+		char_count += put_octal(n / 8);
+	ft_putchar((n % 8) + '0');
+	return (char_count);
+}
