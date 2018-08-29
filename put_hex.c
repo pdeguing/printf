@@ -1,42 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   put_hex.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/11 19:09:41 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/08/28 17:44:15 by pdeguing         ###   ########.fr       */
+/*   Created: 2018/08/24 21:33:09 by pdeguing          #+#    #+#             */
+/*   Updated: 2018/08/28 10:26:35 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_printf(const char *format, ...)
+int		put_hex(int n)
 {
-	va_list	args_list;
-	int		char_count;
-	int		i;
+	static int	char_count = 0;
+	int			rest;
 
-	va_start(args_list, format);
-	i = 0;
-	char_count = 0;
-	while (format[i])
-	{
-		if (format[i] != '%')
-		{
-			ft_putchar(format[i]);
-			char_count++;
-			i++;
-		}
-		if (format[i] == '%')
-		{
-			i++;
-			char_count += get_specifier(&i, format, args_list);
-		}
-	}
-	va_end(args_list);
+	if (n >= 16)
+		char_count += put_hex(n / 16);
+	rest = n % 16;
+	if (rest < 10)
+		ft_putchar(rest + '0');
+	if (rest >= 10)
+		ft_putchar(rest + 87);
+	char_count++;
 	return (char_count);
 }
-
-
