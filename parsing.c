@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 14:29:28 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/08/28 17:44:14 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/08/29 13:16:29 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int 	get_width(int *i, const char *format)
 	int		j;
 
 	j = *i;
-	while ('9' >= format[*i] && format[*i] > '0')
+	while (ft_isnum(format[*i]))
 		*i = *i + 1;
 	tmp = ft_strsub(format, j, *i - j);
 	return (ft_atoi(tmp));
@@ -30,7 +30,7 @@ int		start_parsing(int *i, const char *format, va_list arguments)
 	{
 		// KEEP TRACK OF THE FLAGS TO USE BEFORE PRINTING
 	}
-	if ('9' >= format[*i] && format[*i] > '0')
+	if (ft_isnum(format[*i]))
 	{
 		// DETERMINE THE MINIMAL WIDTH OF THE FIELD TO PRINT
 		// get_width(i, format);

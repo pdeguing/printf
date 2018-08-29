@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 19:09:41 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/08/28 17:44:15 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/08/29 13:16:28 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		ft_printf(const char *format, ...)
 			char_count++;
 			i++;
 		}
-		if (format[i] == '%')
+		else
 		{
 			i++;
 			char_count += get_specifier(&i, format, args_list);
@@ -38,5 +38,3 @@ int		ft_printf(const char *format, ...)
 	va_end(args_list);
 	return (char_count);
 }
-
-
