@@ -34,7 +34,7 @@ int	start_parsing(int *i, const char *format, va_list args)
 
 	flags = flags_new();
 	if (!flags)
-		return (NULL);
+		return (-1);
 	flags_init(flags, i, format);
 	return (print_format(flags, args));
 }

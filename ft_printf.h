@@ -31,9 +31,9 @@ typedef struct		s_flags
 }			t_flags;
 
 t_flags			*flags_new(void);
-void			flags_init(t_flags flags, int *i, const char *format);
+void			flags_init(t_flags *flags, int *i, const char *format);
 
-int			print_format(t_flags flags, va_list args);
+int			print_format(t_flags *flags, va_list args);
 
 int			start_parsing(int *i, const char *format, va_list args);
 int			ft_printf(const char *format, ...);

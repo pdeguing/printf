@@ -12,7 +12,8 @@
 
 #include "ft_printf.h"
 #include <stdio.h>
-#define TEST "hello: %d, %i, %s, %o, %x, %X, %%, %c.\n", 42, 42, "world", 42, 42, 42, '@' 
+//#define TEST "hello: %d, %i, %s, %o, %x, %X, %%, %c.\n", 42, 42, "world", 42, 42, 42, '@' 
+#define TEST "hello: %d, %i, %s.\n", 42, 42, "world" 
 
 int		main(void)
 {
