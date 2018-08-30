@@ -12,39 +12,31 @@
 
 #include "ft_printf.h"
 
-int 	get_width(int *i, const char *format)
+/*
+int	get_minimal_width(t_flags flags)
 {
-	char	*tmp;
-	int		j;
+	char	**argument;
 
-	j = *i;
-	while (ft_isnum(format[*i]))
-		*i = *i + 1;
-	tmp = ft_strsub(format, j, *i - j);
-	return (ft_atoi(tmp));
+	if (flags->precision && flags->precision > flags->minimal_width)
+		flags->minimal_width = flags->precision;
+	*argument = get_argument(flags, va_list args);
+	if (flags->minimal_width > ft_strlen(*argument))
+		alter_format(flags, argument);
+	ft_putstr(*argument);
+	ft_strdel(argument);
+	return (flags->minimal_width);
 }
+*/
 
-int		start_parsing(int *i, const char *format, va_list arguments)
+int	start_parsing(int *i, const char *format, va_list args)
 {
-	if (ft_strchr("#0-+", format[*i]))
-	{
-		// KEEP TRACK OF THE FLAGS TO USE BEFORE PRINTING
-	}
-	if (ft_isnum(format[*i]))
-	{
-		// DETERMINE THE MINIMAL WIDTH OF THE FIELD TO PRINT
-		// get_width(i, format);
-	}
-	if (format[*i] == ".")
-	{
-		// KEEP TRACK OF THE PRECISION TO USE BEFORE PRINTING 
-	}
-	if (ft_strchr("hljz", format[*i]))
-	{
-		// KEEP TRACK OF THE MODIFIER TO USE FOR CONVERSION 
-	}
-	// KEEP TRACK OF THE TYPE OF DATA TO PRINT
-	return (char_count);
+	t_flags		*flags;
+
+	flags = flags_new();
+	if (!flags)
+		return (NULL);
+	flags_init(flags, i, format);
+	return (print_format(flags, args));
 }
 
 // 1. PUT ALL THE DATA IN A STRUCT

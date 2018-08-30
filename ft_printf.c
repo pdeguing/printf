@@ -32,7 +32,7 @@ int		ft_printf(const char *format, ...)
 		else
 		{
 			i++;
-			char_count += get_specifier(&i, format, args_list);
+			char_count += start_parsing(&i, format, args_list);
 		}
 	}
 	va_end(args_list);

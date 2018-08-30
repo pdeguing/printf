@@ -15,11 +15,27 @@
 # include "libft/libft.h"
 # include <stdarg.h>
 
-int		put_hexupper(int n);
-int		put_hex(int n);
-int		put_octal(int n);
-int		get_specifier(int *i, const char *format, va_list args_list);
+/*
+** Using a structure seems more efficient than nesting a lot of if statements
+** to handle the flags. It allows to check the flags only when they are
+** relevant for formating.
+*/
 
-int		ft_printf(const char *format, ...);
+typedef struct		s_flags
+{
+	char		flag;
+	int		minimal_width;
+	int		precision;
+	int		modifier;
+	char		specifier;
+}			t_flags;
+
+t_flags			*flags_new(void);
+void			flags_init(t_flags flags, int *i, const char *format);
+
+int			print_format(t_flags flags, va_list args);
+
+int			start_parsing(int *i, const char *format, va_list args);
+int			ft_printf(const char *format, ...);
 
 #endif
