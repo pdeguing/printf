@@ -23,8 +23,12 @@
 
 typedef struct		s_flags
 {
-	char		flag;
-	int		minimal_width;
+	int		hash;
+	int		zero;
+	int		dash;
+	int		plus;
+	int		space;
+	size_t		minimal_width;
 	int		precision;
 	int		modifier;
 	char		specifier;

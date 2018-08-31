@@ -12,7 +12,7 @@
 
 NAME = ft_printf 
 CFLAG = -Wall -Wextra -Werror
-SRC = main.c ft_printf.c parsing.c flags.c format.c 
+SRC = main.c ft_printf.c parsing.c flags.c format.c
 INCLUDE = -I /libft
 LIB = -lft -L./libft/
 LIBFT = libft/libft.a
