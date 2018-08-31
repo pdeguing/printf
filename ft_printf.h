@@ -29,7 +29,7 @@ typedef struct		s_flags
 	int		plus;
 	int		space;
 	size_t		minimal_width;
-	int		precision;
+	size_t		precision;
 	int		modifier;
 	char		specifier;
 }			t_flags;
