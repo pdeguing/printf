@@ -77,19 +77,19 @@ char	*init_format(t_flags *flags, va_list args)
 //	if (flags->specifier == '%')
 //		return (char_format('%'));
 	if (flags->specifier == 'd' || flags->specifier == 'i')
-		return (ft_itoa(va_arg(args, int)));
+		return (ft_itoa(va_arg(args, int), 10));
 	if (flags->specifier == 's')
 		return (ft_strdup(va_arg(args, char *)));
 //	if (flags->specifier == 'c')
 //		return (char_format(va_arg(args, int)));
-//	if (flags->specifier == 'o')
-//		return (ft_itoa_base(va_arg(args, int), 8));
-//	if (flags->specifier == 'u')
-//		return (ft_itoa_unsigned(va_args(args, int));
-//	if (flags->specifier == 'x')
-//		return (ft_itoa_base(va_arg(args, int), 16));
-//	if (flags->specifier == 'X')
-//		return (ft_strtoupper(ft_itoa_base(va_arg(args, int), 16)));
+	if (flags->specifier == 'o')
+		return (ft_utoa(va_arg(args, int), 8));
+	if (flags->specifier == 'u')
+		return (ft_utoa(va_arg(args, int), 10));
+	if (flags->specifier == 'x')
+		return (ft_utoa(va_arg(args, int), 16));
+	if (flags->specifier == 'X')
+		return (ft_capitalize(ft_utoa(va_arg(args, int), 16)));
 	return (NULL);
 }
 
