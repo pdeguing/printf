@@ -11,35 +11,10 @@ FAILED TESTS:
   2. unix function printf
      (returned value) -->written on stdout<--
 
-# 0016 (int)
-  ft_printf("%x", -42);
-  1. (   16) -->ffffffffffffffd6<--
-  2. (    8) -->ffffffd6<--
-
-# 0017 (int)
-  ft_printf("%X", -42);
-  1. (   16) -->FFFFFFFFFFFFFFD6<--
-  2. (    8) -->FFFFFFD6<--
-
-# 0023 (int)
-  ft_printf("%lx", 4294967296);
-  1. (    1) -->0<--
-  2. (    9) -->100000000<--
-
-# 0024 (int)
-  ft_printf("%llX", 4294967296);
-  1. (    1) -->0<--
-  2. (    9) -->100000000<--
-
 # 0026 (int)
   ft_printf("%hhX", 4294967296);
   1. (    0) --><--
   2. (    1) -->0<--
-
-# 0027 (int)
-  ft_printf("%jx", 4294967295);
-  1. (   16) -->ffffffffffffffff<--
-  2. (    8) -->ffffffff<--
 
 # 0028 (int)
   ft_printf("%jx", 4294967296);
@@ -53,23 +28,8 @@ FAILED TESTS:
 
 # 0030 (int)
   ft_printf("%jx", -4294967297);
-  1. (   16) -->ffffffffffffffff<--
+  1. (    8) -->ffffffff<--
   2. (   16) -->fffffffeffffffff<--
-
-# 0031 (int)
-  ft_printf("%llx", 9223372036854775807);
-  1. (   16) -->ffffffffffffffff<--
-  2. (   16) -->7fffffffffffffff<--
-
-# 0032 (int)
-  ft_printf("%llx", 9223372036854775808);
-  1. (   16) -->ffffffffffffffff<--
-  2. (   16) -->7fffffffffffffff<--
-
-# 0039 (int)
-  ft_printf("%#llx", 9223372036854775807);
-  1. (   18) -->0xffffffffffffffff<--
-  2. (   18) -->0x7fffffffffffffff<--
 
 # 0040 (int)
   ft_printf("%#x", 0);
@@ -143,8 +103,8 @@ FAILED TESTS:
 
 # 0073 (NULL)
   ft_printf("@moulitest: %s", NULL);
-includes/projects/ft_printf/ft_printf_main.sh: line 198: printf: @moulitest: includes/projects/ft_printf/ft_printf_main.sh: line 151:  5309 Segmentation fault: 11  ./tmp/ft_printf_s sN "@moulitest: %s" ""$: invalid number
-  1. (    0) -->@moulitest: includes/projects/ft_printf/ft_printf_main.sh: line 151:  5309 Segmentation fault: 11  ./tmp/ft_printf_s sN "@moulitest: %s" "NULL"$<--
+includes/projects/ft_printf/ft_printf_main.sh: line 198: printf: @moulitest: includes/projects/ft_printf/ft_printf_main.sh: line 151: 86983 Segmentation fault: 11  ./tmp/ft_printf_s sN "@moulitest: %s" ""$: invalid number
+  1. (    0) -->@moulitest: includes/projects/ft_printf/ft_printf_main.sh: line 151: 86983 Segmentation fault: 11  ./tmp/ft_printf_s sN "@moulitest: %s" "NULL"$<--
   2. (   18) -->@moulitest: (null)<--
 
 # 0074 (NULL)
@@ -154,8 +114,8 @@ includes/projects/ft_printf/ft_printf_main.sh: line 198: printf: @moulitest: inc
 
 # 0075 (NULL)
   ft_printf("%s %s", NULL, string);
-includes/projects/ft_printf/ft_printf_main.sh: line 198: printf: includes/projects/ft_printf/ft_printf_main.sh: line 151:  5415 Segmentation fault: 11  ./tmp/ft_printf_s sN "%s %s" "" "string"$: invalid number
-  1. (    0) -->includes/projects/ft_printf/ft_printf_main.sh: line 151:  5415 Segmentation fault: 11  ./tmp/ft_printf_s sN "%s %s" "NULL" "string"$<--
+includes/projects/ft_printf/ft_printf_main.sh: line 198: printf: includes/projects/ft_printf/ft_printf_main.sh: line 151: 87089 Segmentation fault: 11  ./tmp/ft_printf_s sN "%s %s" "" "string"$: invalid number
+  1. (    0) -->includes/projects/ft_printf/ft_printf_main.sh: line 151: 87089 Segmentation fault: 11  ./tmp/ft_printf_s sN "%s %s" "NULL" "string"$<--
   2. (   13) -->(null) string<--
 
 # 0079 (char)
@@ -368,24 +328,14 @@ includes/projects/ft_printf/ft_printf_main.sh: line 198: printf: includes/projec
   1. (    0) --><--
   2. (   11) -->-2147483648<--
 
-# 0147 (long)
-  ft_printf("%ld", 2147483648);
-  1. (    0) --><--
-  2. (   10) -->2147483648<--
-
 # 0148 (long)
   ft_printf("%ld", -2147483649);
-  1. (   10) -->2147483647<--
-  2. (   11) -->-2147483649<--
-
-# 0149 (long long)
-  ft_printf("%lld", 9223372036854775807);
   1. (    0) --><--
-  2. (   19) -->9223372036854775807<--
+  2. (   11) -->-2147483649<--
 
 # 0150 (long long)
   ft_printf("%lld", -9223372036854775808);
-  1. (    1) -->0<--
+  1. (    0) --><--
   2. (   20) -->-9223372036854775808<--
 
 # 0151 (intmax_t)
@@ -397,16 +347,6 @@ includes/projects/ft_printf/ft_printf_main.sh: line 198: printf: includes/projec
   ft_printf("%jd", -9223372036854775808);
   1. (    1) -->0<--
   2. (   20) -->-9223372036854775808<--
-
-# 0153 (ssize_t)
-  ft_printf("%zd", 4294967295);
-  1. (    0) --><--
-  2. (   10) -->4294967295<--
-
-# 0154 (ssize_t)
-  ft_printf("%zd", 4294967296);
-  1. (    1) -->0<--
-  2. (   10) -->4294967296<--
 
 # 0156 (ssize_t)
   ft_printf("%zd", -1);
@@ -463,60 +403,15 @@ includes/projects/ft_printf/ft_printf_main.sh: line 198: printf: includes/projec
   1. (   23) -->@moulitest:     0     0<--
   2. (   23) -->@moulitest:            <--
 
-# 0179 (unsigned int)
-  ft_printf("%u", -1);
-  1. (   20) -->18446744073709551615<--
-  2. (   10) -->4294967295<--
-
-# 0180 (unsigned int)
-  ft_printf("%u", 4294967295);
-  1. (   20) -->18446744073709551615<--
-  2. (   10) -->4294967295<--
-
-# 0182 (unsigned int)
-  ft_printf("%5u", 4294967295);
-  1. (   20) -->18446744073709551615<--
-  2. (   10) -->4294967295<--
-
-# 0183 (unsigned int)
-  ft_printf("%15u", 4294967295);
-  1. (   20) -->18446744073709551615<--
-  2. (   15) -->     4294967295<--
-
-# 0184 (unsigned int)
-  ft_printf("%-15u", 4294967295);
-  1. (   20) -->18446744073709551615<--
-  2. (   15) -->4294967295     <--
-
-# 0185 (unsigned int)
-  ft_printf("%015u", 4294967295);
-  1. (   20) -->18446744073709551615<--
-  2. (   15) -->000004294967295<--
-
 # 0186 (unsigned int)
   ft_printf("% u", 4294967295);
-  1. (   21) --> 18446744073709551615<--
+  1. (   11) --> 4294967295<--
   2. (   10) -->4294967295<--
 
 # 0187 (unsigned int)
   ft_printf("%+u", 4294967295);
-  1. (   21) -->+18446744073709551615<--
+  1. (   11) -->+4294967295<--
   2. (   10) -->4294967295<--
-
-# 0188 (unsigned long)
-  ft_printf("%lu", 4294967295);
-  1. (   20) -->18446744073709551615<--
-  2. (   10) -->4294967295<--
-
-# 0189 (unsigned long)
-  ft_printf("%lu", 4294967296);
-  1. (    1) -->0<--
-  2. (   10) -->4294967296<--
-
-# 0191 (unsigned long long)
-  ft_printf("%llu", 4999999999);
-  1. (    9) -->705032703<--
-  2. (   10) -->4999999999<--
 
 # 0192 (intmax_t)
   ft_printf("%ju", 4999999999);
@@ -525,21 +420,6 @@ includes/projects/ft_printf/ft_printf_main.sh: line 198: printf: includes/projec
 
 # 0193 (size_t)
   ft_printf("%ju", 4294967296);
-  1. (    1) -->0<--
-  2. (   10) -->4294967296<--
-
-# 0194 (unsigned long)
-  ft_printf("%U", 4294967295);
-  1. (   20) -->18446744073709551615<--
-  2. (   10) -->4294967295<--
-
-# 0195 (unsigned long)
-  ft_printf("%hU", 4294967296);
-  1. (    1) -->0<--
-  2. (   10) -->4294967296<--
-
-# 0196 (unsigned long)
-  ft_printf("%U", 4294967296);
   1. (    1) -->0<--
   2. (   10) -->4294967296<--
 
@@ -562,30 +442,30 @@ SUCCESS TESTS:
   13.      ft_printf("%X", 42);                          -> "2A"
   14.      ft_printf("%x", 0);                           -> "0"
   15.      ft_printf("%X", 0);                           -> "0"
-  16. FAIL ft_printf("%x", -42);                         -> "ffffffd6"
-  17. FAIL ft_printf("%X", -42);                         -> "FFFFFFD6"
+  16.      ft_printf("%x", -42);                         -> "ffffffd6"
+  17.      ft_printf("%X", -42);                         -> "FFFFFFD6"
   18.      ft_printf("%x", 4294967296);                  -> "0"
   19.      ft_printf("%X", 4294967296);                  -> "0"
   20.      ft_printf("%x", test);                        -> "0"
   21.      ft_printf("%10x", 42);                        -> "        2a"
   22.      ft_printf("%-10x", 42);                       -> "2a        "
-  23. FAIL ft_printf("%lx", 4294967296);                 -> "100000000"
-  24. FAIL ft_printf("%llX", 4294967296);                -> "100000000"
+  23.      ft_printf("%lx", 4294967296);                 -> "100000000"
+  24.      ft_printf("%llX", 4294967296);                -> "100000000"
   25.      ft_printf("%hx", 4294967296);                 -> "0"
   26. FAIL ft_printf("%hhX", 4294967296);                -> "0"
-  27. FAIL ft_printf("%jx", 4294967295);                 -> "ffffffff"
+  27.      ft_printf("%jx", 4294967295);                 -> "ffffffff"
   28. FAIL ft_printf("%jx", 4294967296);                 -> "100000000"
   29. FAIL ft_printf("%jx", -4294967296);                -> "ffffffff00000000"
   30. FAIL ft_printf("%jx", -4294967297);                -> "fffffffeffffffff"
-  31. FAIL ft_printf("%llx", 9223372036854775807);       -> "7fffffffffffffff"
-  32. FAIL ft_printf("%llx", 9223372036854775808);       -> "7fffffffffffffff"
+  31.      ft_printf("%llx", 9223372036854775807);       -> "7fffffffffffffff"
+  32.      ft_printf("%llx", 9223372036854775808);       -> "7fffffffffffffff"
   33.      ft_printf("%010x", 542);                      -> "000000021e"
   34.      ft_printf("%-15x", 542);                      -> "21e            "
   35.      ft_printf("%2x", 542);                        -> "21e"
   36.      ft_printf("%.2x", 5427);                      -> "1533"
   37.      ft_printf("%5.2x", 5427);                     -> " 1533"
   38.      ft_printf("%#x", 42);                         -> "0x2a"
-  39. FAIL ft_printf("%#llx", 9223372036854775807);      -> "0x7fffffffffffffff"
+  39.      ft_printf("%#llx", 9223372036854775807);      -> "0x7fffffffffffffff"
   40. FAIL ft_printf("%#x", 0);                          -> "0"
   41.      ft_printf("%#x", 42);                         -> "0x2a"
   42.      ft_printf("%#X", 42);                         -> "0X2A"
@@ -693,14 +573,14 @@ SUCCESS TESTS:
  144. FAIL ft_printf("%hhd", -129);                      -> "127"
  145.      ft_printf("%ld", 2147483647);                 -> "2147483647"
  146. FAIL ft_printf("%ld", -2147483648);                -> "-2147483648"
- 147. FAIL ft_printf("%ld", 2147483648);                 -> "2147483648"
+ 147.      ft_printf("%ld", 2147483648);                 -> "2147483648"
  148. FAIL ft_printf("%ld", -2147483649);                -> "-2147483649"
- 149. FAIL ft_printf("%lld", 9223372036854775807);       -> "9223372036854775807"
+ 149.      ft_printf("%lld", 9223372036854775807);       -> "9223372036854775807"
  150. FAIL ft_printf("%lld", -9223372036854775808);      -> "-9223372036854775808"
  151. FAIL ft_printf("%jd", 9223372036854775807);        -> "9223372036854775807"
  152. FAIL ft_printf("%jd", -9223372036854775808);       -> "-9223372036854775808"
- 153. FAIL ft_printf("%zd", 4294967295);                 -> "4294967295"
- 154. FAIL ft_printf("%zd", 4294967296);                 -> "4294967296"
+ 153.      ft_printf("%zd", 4294967295);                 -> "4294967295"
+ 154.      ft_printf("%zd", 4294967296);                 -> "4294967296"
  155.      ft_printf("%zd", -0);                         -> "0"
  156. FAIL ft_printf("%zd", -1);                         -> "-1"
  157.      ft_printf("%d", 1);                           -> "1"
@@ -725,23 +605,23 @@ SUCCESS TESTS:
  176. FAIL ft_printf("@moulitest: %5.d %5.0d", 0, 0);    -> "@moulitest:            "
  177.      ft_printf("%u", 0);                           -> "0"
  178.      ft_printf("%u", 1);                           -> "1"
- 179. FAIL ft_printf("%u", -1);                          -> "4294967295"
- 180. FAIL ft_printf("%u", 4294967295);                  -> "4294967295"
+ 179.      ft_printf("%u", -1);                          -> "4294967295"
+ 180.      ft_printf("%u", 4294967295);                  -> "4294967295"
  181.      ft_printf("%u", 4294967296);                  -> "0"
- 182. FAIL ft_printf("%5u", 4294967295);                 -> "4294967295"
- 183. FAIL ft_printf("%15u", 4294967295);                -> "     4294967295"
- 184. FAIL ft_printf("%-15u", 4294967295);               -> "4294967295     "
- 185. FAIL ft_printf("%015u", 4294967295);               -> "000004294967295"
+ 182.      ft_printf("%5u", 4294967295);                 -> "4294967295"
+ 183.      ft_printf("%15u", 4294967295);                -> "     4294967295"
+ 184.      ft_printf("%-15u", 4294967295);               -> "4294967295     "
+ 185.      ft_printf("%015u", 4294967295);               -> "000004294967295"
  186. FAIL ft_printf("% u", 4294967295);                 -> "4294967295"
  187. FAIL ft_printf("%+u", 4294967295);                 -> "4294967295"
- 188. FAIL ft_printf("%lu", 4294967295);                 -> "4294967295"
- 189. FAIL ft_printf("%lu", 4294967296);                 -> "4294967296"
+ 188.      ft_printf("%lu", 4294967295);                 -> "4294967295"
+ 189.      ft_printf("%lu", 4294967296);                 -> "4294967296"
  190.      ft_printf("%lu", -42);                        -> "18446744073709551574"
- 191. FAIL ft_printf("%llu", 4999999999);                -> "4999999999"
+ 191.      ft_printf("%llu", 4999999999);                -> "4999999999"
  192. FAIL ft_printf("%ju", 4999999999);                 -> "4999999999"
  193. FAIL ft_printf("%ju", 4294967296);                 -> "4294967296"
- 194. FAIL ft_printf("%U", 4294967295);                  -> "4294967295"
- 195. FAIL ft_printf("%hU", 4294967296);                 -> "4294967296"
- 196. FAIL ft_printf("%U", 4294967296);                  -> "4294967296"
+ 194.      ft_printf("%U", 4294967295);                  -> "4294967295"
+ 195.      ft_printf("%hU", 4294967296);                 -> "4294967296"
+ 196.      ft_printf("%U", 4294967296);                  -> "4294967296"
  197.      ft_printf("@moulitest: %.5u", 42);            -> "@moulitest: 00042"
 
