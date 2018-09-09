@@ -34,30 +34,30 @@ char	*format_long(t_flags *flags, va_list args)
 char	*format_longlong(t_flags *flags, va_list args)
 {
 	if (flags->specifier == 'd' || flags->specifier == 'i')
-		return (ft_itoa((long long)va_arg(args, int), 10));
+		return (ft_itoa(va_arg(args, long long), 10));
 	if (flags->specifier == 'o')
-		return (ft_utoa((long long)va_arg(args, int), 8));
+		return (ft_utoa(va_arg(args, unsigned long long), 8));
 	if (flags->specifier == 'u')
-		return (ft_utoa((long long)va_arg(args, int), 10));
+		return (ft_utoa(va_arg(args, unsigned long long), 10));
 	if (flags->specifier == 'x')
-		return (ft_utoa((long long)va_arg(args, int), 16));
+		return (ft_utoa(va_arg(args, unsigned long long), 16));
 	if (flags->specifier == 'X')
-		return (ft_capitalize(ft_utoa((long long)va_arg(args, int), 16)));
+		return (ft_capitalize(ft_utoa(va_arg(args, unsigned long long), 16)));
 	return (NULL);
 }
 
 char	*format_z(t_flags *flags, va_list args)
 {
 	if (flags->specifier == 'd' || flags->specifier == 'i')
-		return (ft_itoa((size_t)va_arg(args, int), 10));
+		return (ft_itoa(va_arg(args, ssize_t), 10));
 	if (flags->specifier == 'o')
-		return (ft_utoa((size_t)va_arg(args, int), 8));
+		return (ft_utoa(va_arg(args, size_t), 8));
 	if (flags->specifier == 'u')
-		return (ft_utoa((size_t)va_arg(args, int), 10));
+		return (ft_utoa(va_arg(args, size_t), 10));
 	if (flags->specifier == 'x')
-		return (ft_utoa((size_t)va_arg(args, int), 16));
+		return (ft_utoa(va_arg(args, size_t), 16));
 	if (flags->specifier == 'X')
-		return (ft_capitalize(ft_utoa((size_t)va_arg(args, int), 16)));
+		return (ft_capitalize(ft_utoa(va_arg(args, size_t), 16)));
 	return (NULL);
 }
 
