@@ -72,11 +72,13 @@ void		flags_modifier(t_flags *flags, int *i, const char *format)
 
 void		flags_specifier(t_flags *flags, int *i, const char *format)
 {
-	if (ft_strchr("SCDOU", format[*i]))
+	if (ft_strchr("SDOUC", format[*i]))
 		flags->modifier = 'l';
 	if (!ft_strchr("sSpdDioOuUxXcC%", format[*i]))
 		flags->error = 1;
-	flags->specifier = ft_tolower(format[*i]);
+	flags->specifier = format[*i];
+	if (ft_strchr("SDOUC", format[*i]))
+		flags->specifier = ft_tolower(format[*i]);
 	if (flags->modifier == 'h' + 'h')
 		flags->specifier = 'c';
 	*i = *i + 1;

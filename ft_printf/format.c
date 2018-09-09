@@ -92,8 +92,7 @@ int	print_format(t_flags *flags, va_list args)
 	char	**format;
 	int	len;
 
-	format = (char **)malloc(sizeof(char *));
-	if (!format)
+	if (!(format = (char **)malloc(sizeof(char *))))
 		return (-1);
 	if (!(*format = init_format(flags, args)))
 		return (-1);
