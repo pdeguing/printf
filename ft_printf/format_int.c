@@ -19,15 +19,15 @@ char	*format_short(t_flags *flags, va_list args)
 char	*format_long(t_flags *flags, va_list args)
 {
 	if (flags->specifier == 'd' || flags->specifier == 'i')
-		return (ft_itoa((long)va_arg(args, int), 10));
+		return (ft_itoa(va_arg(args, long), 10));
 	if (flags->specifier == 'o')
-		return (ft_utoa((long)va_arg(args, int), 8));
+		return (ft_utoa(va_arg(args, unsigned long), 8));
 	if (flags->specifier == 'u')
-		return (ft_utoa((long)va_arg(args, int), 10));
+		return (ft_utoa(va_arg(args, unsigned long), 10));
 	if (flags->specifier == 'x')
-		return (ft_utoa((long)va_arg(args, int), 16));
+		return (ft_utoa(va_arg(args, unsigned long), 16));
 	if (flags->specifier == 'X')
-		return (ft_capitalize(ft_utoa((long)va_arg(args, int), 16)));
+		return (ft_capitalize(ft_utoa(va_arg(args, unsigned long), 16)));
 	return (NULL);
 }
 
