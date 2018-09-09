@@ -17,11 +17,10 @@ NOW
 void	hash_format(t_flags *flags, char **format) // NEED TO CHECK FOR ZERO
 {
 	char	*affix;
-	char	*tmp;
 
 	if (flags->specifier == 'o')
 		affix = ft_strdup("0");
-	else if (flags->specifier == 'x')
+	else if (flags->specifier == 'x' || flags->specifier == 'p')
 		affix = ft_strdup("0x");
 	else if (flags->specifier == 'X')
 		affix = ft_strdup("0X");
@@ -29,31 +28,24 @@ void	hash_format(t_flags *flags, char **format) // NEED TO CHECK FOR ZERO
 		return ;
 	if (!affix)
 		return ;
-	tmp = *format;
-	*format = ft_strjoin(affix, *format);
-	ft_strdel(&tmp);
+	*format = ft_strfjoin(affix, *format);
 }
 
 void	precision_format(t_flags *flags, char **format)
 {
 	char	*affix;
-	char	*tmp;
 	int	size;
 
 	size = flags->precision - ft_strlen(*format);
 	if (!(affix = ft_strnew(size)))
 		return ;
 	ft_memset(affix, '0', size);
-	tmp = *format;
-	*format = ft_strjoin(affix, *format);
-	ft_strdel(&tmp);
-	ft_strdel(&affix);
+	*format = ft_strfjoin(affix, *format);
 }
 
 void	width_format(t_flags *flags, char **format)
 {
 	char	*affix;
-	char	*tmp;
 	int	size;
 
 	size = flags->minimal_width - ft_strlen(*format);
@@ -63,40 +55,38 @@ void	width_format(t_flags *flags, char **format)
 		ft_memset(affix, '0', size);
 	else
 		ft_memset(affix, ' ', size);
-	tmp = *format;
 	if (flags->dash == 1)
-		*format = ft_strjoin(*format, affix);
+		*format = ft_strfjoin(*format, affix);
 	else
-		*format = ft_strjoin(affix, *format);
-	ft_strdel(&tmp);
-	ft_strdel(&affix);
+		*format = ft_strfjoin(affix, *format);
 }
+
+/*
+** Getting the initial version of the format after conversion of the argument
+*/
 
 char	*init_format(t_flags *flags, va_list args)
 {
-//	if (flags->specifier == '%')
-//		return (char_format('%'));
-	if (flags->specifier == 'd' || flags->specifier == 'i')
-		return (ft_itoa(va_arg(args, int), 10));
+	if (flags->specifier == '%')
+		return (char_to_str('%'));
 	if (flags->specifier == 's')
-		return (ft_strdup(va_arg(args, char *)));
-//	if (flags->specifier == 'c')
-//		return (char_format(va_arg(args, int)));
-	if (flags->specifier == 'o')
-		return (ft_utoa(va_arg(args, int), 8));
-	if (flags->specifier == 'u')
-		return (ft_utoa(va_arg(args, int), 10));
-	if (flags->specifier == 'x')
-		return (ft_utoa(va_arg(args, int), 16));
-	if (flags->specifier == 'X')
-		return (ft_capitalize(ft_utoa(va_arg(args, int), 16)));
+		return (format_s(flags, args));
+	if (flags->specifier == 'c')
+		return (format_c(flags, args));
+	if (ft_strchr("diouxX", flags->specifier))
+		return (format_int(flags, args));
+	if (flags->specifier == 'p')
+		return (ft_utoa((u_int64_t)va_arg(args, void *), 16));
 	return (NULL);
 }
+
+/*
+** Formatting considering all specified options and printing the final format
+*/
 
 int	print_format(t_flags *flags, va_list args)
 {
 	char	**format;
-	char	*tmp;
 	int	len;
 
 	format = (char **)malloc(sizeof(char *));
@@ -104,15 +94,13 @@ int	print_format(t_flags *flags, va_list args)
 		return (-1);
 	if (!(*format = init_format(flags, args)))
 		return (-1);
-	if (flags->space == 1)
-	{
-		tmp = *format;
-		*format = ft_strjoin(" ", *format); // REPLACE STRJOIN WITH STRJOINFREE EVERYWHERE
-		ft_strdel(&tmp);		// IN THIS CASE WE CAN PROBABLY USE CHAR_FORMAT
-	}
 	if (ft_strlen(*format) < flags->precision)
 		precision_format(flags, format);
-	if (flags->hash == 1)
+	if (flags->plus == 1 && !ft_strchr(*format, '-'))
+		*format = ft_strfljoin("+", *format);
+	if (flags->space == 1)
+		*format = ft_strfljoin(" ", *format);
+	if (flags->hash == 1 || flags->specifier == 'p')
 		hash_format(flags, format);
 	if (ft_strlen(*format) < flags->minimal_width)
 		width_format(flags, format);

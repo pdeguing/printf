@@ -12,7 +12,7 @@
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-# include "libft/libft.h"
+# include "../libft/libft.h"
 # include <stdarg.h>
 
 /*
@@ -32,7 +32,16 @@ typedef struct		s_flags
 	size_t		precision;
 	int		modifier;
 	char		specifier;
+	int		error;
 }			t_flags;
+
+char			*char_to_str(char c);
+char			*get_utf_char(wchar_t wchar);
+char			*get_utf_str(wchar_t *wstr);
+
+char			*format_c(t_flags *flags, va_list args);
+char			*format_s(t_flags *flags, va_list args);
+char			*format_int(t_flags *flags, va_list args);
 
 t_flags			*flags_new(void);
 void			flags_init(t_flags *flags, int *i, const char *format);
