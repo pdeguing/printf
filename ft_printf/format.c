@@ -68,7 +68,10 @@ void	width_format(t_flags *flags, char **format)
 char	*init_format(t_flags *flags, va_list args)
 {
 	if (flags->specifier == '%')
+	{
+		flags->space = 0;
 		return (char_to_str('%'));
+	}
 	if (flags->specifier == 's')
 		return (format_s(flags, args));
 	if (flags->specifier == 'c')
