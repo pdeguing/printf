@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-void	hash_format(t_flags *flags, char **format)
+void	format_hash(t_flags *flags, char **prefix)
 {
 	char	*affix;
 
@@ -14,27 +14,27 @@ void	hash_format(t_flags *flags, char **format)
 		return ;
 	if (!affix)
 		return ;
-	*format = ft_strfjoin(affix, *format);
+	*prefix = ft_strfjoin(affix, *prefix);
 }
 
-void	precision_format(t_flags *flags, char **format)
+void	format_precision(t_flags *flags, int len, char **prefix)
 {
 	char	*affix;
 	int	size;
 
-	size = flags->precision - ft_strlen(*format);
+	size = flags->precision - len;
 	if (!(affix = ft_strnew(size)))
 		return ;
 	ft_memset(affix, '0', size);
-	*format = ft_strfjoin(affix, *format);
+	*prefix = ft_strfjoin(affix, *prefix);
 }
 
-void	width_format(t_flags *flags, char **format)
+void	format_width(t_flags *flags, int len, char **prefix, char **suffix)
 {
 	char	*affix;
 	int	size;
 
-	size = flags->minimal_width - ft_strlen(*format);
+	size = flags->minimal_width - len;
 	if (flags->hash == 1 && flags->zero == 1)
 		size -= 2;
 	if(!(affix = ft_strnew(size)))
@@ -44,26 +44,27 @@ void	width_format(t_flags *flags, char **format)
 	else
 		ft_memset(affix, ' ', size);
 	if (flags->dash == 1)
-		*format = ft_strfjoin(*format, affix);
+		*suffix = affix;
 	else
-		*format = ft_strfjoin(affix, *format);
+		*prefix = ft_strfjoin(affix, *prefix);
 }
 
-void	master_format(t_flags *flags, char **format)
+void	format_print(t_flags *flags, char **format, char **prefix, char **suffix)
 {
-	if (!**format)
-		*format = ft_strnew(1);
-	if (ft_strlen(*format) < flags->precision)
-		precision_format(flags, format);
-	if (flags->plus == 1 && !ft_strchr(*format, '-'))
-		*format = ft_strfljoin("+", *format);
-	if (flags->space == 1)
-		*format = ft_strfljoin(" ", *format);
-	if ((flags->zero == 0 && flags->hash == 1) || flags->specifier == 'p')
-		hash_format(flags, format);
-	if (ft_strlen(*format) < flags->minimal_width)
-		width_format(flags, format);
-	if ((flags->zero == 1 && flags->hash == 1) || flags->specifier == 'p')
-		hash_format(flags, format);
+	int	len;
 
+	len = ft_strlen(*format);
+	if (len < flags->precision)
+		format_precision(flags, len, prefix);
+	if (flags->plus == 1 && !ft_strchr(*format, '-'))
+		*prefix = ft_strfljoin("+", *prefix);
+	if (flags->space == 1)
+		*prefix = ft_strfljoin(" ", *prefix);
+	if ((flags->zero == 0 && flags->hash == 1) || flags->specifier == 'p')
+		format_hash(flags, prefix);
+	len += ft_strlen(*prefix);
+	if (len < flags->minimal_width)
+		format_width(flags, len, prefix, suffix);
+	if ((flags->zero == 1 && flags->hash == 1) || flags->specifier == 'p')
+		format_hash(flags, prefix);
 }

@@ -36,7 +36,7 @@ int	start_parsing(int *i, const char *format, va_list args)
 	if (!flags)
 		return (-1);
 	flags_init(flags, i, format);
-	return (print_format(flags, args));
+	return (start_format(flags, args));
 }
 
 // 1. PUT ALL THE DATA IN A STRUCT

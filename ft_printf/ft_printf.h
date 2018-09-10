@@ -32,6 +32,7 @@ typedef struct		s_flags
 	int		precision;
 	int		modifier;
 	char		specifier;
+	int		null;
 	int		error;
 }			t_flags;
 
@@ -46,8 +47,9 @@ char			*format_int(t_flags *flags, va_list args);
 t_flags			*flags_new(void);
 void			flags_init(t_flags *flags, int *i, const char *format);
 
-void			master_format(t_flags *flags, char **format);
-int			print_format(t_flags *flags, va_list args);
+int			print_format(t_flags *flags, char **prefix, char **format, char **suffix);
+void			format_print(t_flags *flags, char **format, char **prefix, char **suffix);
+int			start_format(t_flags *flags, va_list args);
 
 int			start_parsing(int *i, const char *format, va_list args);
 int			ft_printf(const char *format, ...);

@@ -20,6 +20,7 @@ t_flags		*flags_new()
 	new->precision = -1;
 	new->modifier = 0;
 	new->specifier = 0;
+	new->null = 0;
 	new->error = 0;
 	return (new);
 }

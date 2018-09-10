@@ -6,8 +6,8 @@ char	*format_s(t_flags *flags, va_list args)
 	void	*arg;
 
 	if (!(arg = va_arg(args, void *)))
-		return (NULL);
-	if (flags->modifier == 'l')
+		format = ft_strdup("(null)");
+	else if (flags->modifier == 'l')
 		format = get_utf_str((wchar_t *)arg); 
 	else
 		format = ft_strdup((char *)arg);
