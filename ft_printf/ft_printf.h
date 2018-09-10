@@ -28,8 +28,8 @@ typedef struct		s_flags
 	int		dash;
 	int		plus;
 	int		space;
-	size_t		minimal_width;
-	size_t		precision;
+	int		minimal_width;
+	int		precision;
 	int		modifier;
 	char		specifier;
 	int		error;
@@ -46,6 +46,7 @@ char			*format_int(t_flags *flags, va_list args);
 t_flags			*flags_new(void);
 void			flags_init(t_flags *flags, int *i, const char *format);
 
+void			master_format(t_flags *flags, char **format);
 int			print_format(t_flags *flags, va_list args);
 
 int			start_parsing(int *i, const char *format, va_list args);

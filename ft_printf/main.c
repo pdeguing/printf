@@ -13,7 +13,7 @@
 #include "ft_printf.h"
 #include <stdio.h>
 #define TEST1 "test1: %d, %i, %s, %010d, % 10d, %-5d, %0d, %-d, % -5d, %5.3d, %-5.3d, %-5.10d.\n", 42, 42, "world", 42, 42, 42, 42, 42, 42, 42, 42, 42 
-#define TEST2 "test2: %o, %u, %x, %X, %+5d, %+d, %+5.3d, %c, %%.\n", 42, 42, 42, 42, 42, 42, 42, 'X'
+#define TEST2 "test2: %o, %u, %x, %X, %+5d, %+d, %+5.3d, %c, %%.\n", 42, 42, -42, -42, 42, 42, 42, 'X'
 #define TEST3 "test3: %p, %15p.\n", ptr, ptr
 #define TEST4 "test4: %hi, %ls, %lc, %S, %C.\n", 42, str, c, str, c 
 /*
@@ -24,6 +24,7 @@ REMEMBER TO CHECK CASE WHERE PRINTF DOES NOT COMPILE CAUSE WARNING OR OTHER STRA
 */
 int		main(void)
 {
+/*
 	int	*ptr;
 	wchar_t	*str = L"hello";
 	wchar_t	c = L'X';
@@ -37,6 +38,8 @@ int		main(void)
 	ft_printf(TEST3);
 	printf(TEST3);
 	ft_printf(TEST4);
-	printf(TEST4);
+	printf(TEST4);*/
+	ft_printf("%c.\n", NULL);
+	printf("%c.\n", NULL);
 	return (0);
 }

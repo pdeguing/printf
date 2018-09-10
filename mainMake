@@ -12,9 +12,7 @@
 
 NAME = ft_printf 
 CFLAG = -Wall -Wextra -Werror
-SRC = main.c ft_printf.c parsing.c flags.c format.c \
-	format_s.c get_utf.c char_to_str.c format_int.c \
-	format_c.c
+SRC = ft_printf/*.c
 INCLUDE = -I /libft
 LIB = -lft -L./libft/
 LIBFT = libft/libft.a
@@ -27,7 +25,7 @@ all: $(NAME)
 	@ echo "all: $(OK_COLOR)done$(NO_COLOR)"
 
 $(NAME): $(LIBFT)
-	@ gcc -o $(NAME) $(CFLAG) $(INCLUDE) $(SRC) $(LIB)
+	@ gcc $(INCLUDE) $(SRC) $(LIB)
 	@ echo "$(NAME): $(OK_COLOR)done$(NO_COLOR)"
 
 $(LIBFT):
@@ -40,7 +38,7 @@ clean:
 	@ echo "clean: $(OK_COLOR)done$(NO_COLOR)"
 
 fclean: clean
-	@ /bin/rm -f $(NAME)
+	@ /bin/rm -f a.out 
 	@ cd libft/ && make fclean
 	@ echo "fclean: $(OK_COLOR)done$(NO_COLOR)"
 

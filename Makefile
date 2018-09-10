@@ -14,6 +14,11 @@ NAME	= libftprintf.a
 CFLAG	= -Wall -Wextra -Werror -c
 SRC		= ft_printf/*.c libft/*.c
 OBJ		= *.o
+TESTSRC = ft_printf/*.c
+INCLUDE = -I /libft
+LIB = -lft -L./libft/
+LIBFT = libft/libft.a
+
 
 all: $(NAME)
 
@@ -29,5 +34,24 @@ fclean: clean
 	/bin/rm -f $(NAME)
 
 re: fclean all
+
+# TO RUN TEST
+
+test: $(LIBFT)
+	gcc $(INCLUDE) $(SRC) $(LIB)
+
+$(LIBFT):
+	cd libft/ && make
+
+tclean:
+	/bin/rm -f *.o
+	cd libft/ && make clean
+
+tfclean: clean
+	/bin/rm -f a.out 
+	cd libft/ && make fclean
+
+tre: fclean all
+
 
 .PHONY: clean fclean all re

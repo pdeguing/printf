@@ -66,7 +66,7 @@ char	*format_int(t_flags *flags, va_list args)
 {
 	if (flags->modifier == 'h')
 		return (format_short(flags, args));
-	if (flags->modifier == 'l')
+	if (flags->modifier == 'l' || flags->modifier == 'j')
 		return (format_long(flags, args));
 	if (flags->modifier == 'l' + 'l')
 		return (format_longlong(flags, args));
@@ -75,12 +75,12 @@ char	*format_int(t_flags *flags, va_list args)
 	if (flags->specifier == 'd' || flags->specifier == 'i')
 		return (ft_itoa(va_arg(args, int), 10));
 	if (flags->specifier == 'o')
-		return (ft_utoa((unsigned int)va_arg(args, int), 8));
+		return (ft_utoa(va_arg(args, unsigned int), 8));
 	if (flags->specifier == 'u')
-		return (ft_utoa((unsigned int)va_arg(args, int), 10));
+		return (ft_utoa(va_arg(args, unsigned int), 10));
 	if (flags->specifier == 'x')
-		return (ft_utoa((unsigned int)va_arg(args, int), 16));
+		return (ft_utoa(va_arg(args, unsigned int), 16));
 	if (flags->specifier == 'X')
-		return (ft_capitalize(ft_utoa((unsigned int)va_arg(args, int), 16)));
+		return (ft_capitalize(ft_utoa(va_arg(args, unsigned int), 16)));
 	return (NULL);
 }

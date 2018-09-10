@@ -17,7 +17,7 @@ t_flags		*flags_new()
 	new->plus = 0;
 	new->space = 0;
 	new->minimal_width = 0;
-	new->precision = 0;
+	new->precision = -1;
 	new->modifier = 0;
 	new->specifier = 0;
 	new->error = 0;
@@ -35,10 +35,13 @@ void		flags_set(t_flags *flags, int *i, const char *format)
 	{
 		if (format[*i] == '#')
 			flags->hash = 1;
-		if (format[*i] == '0')
+		if (format[*i] == '0' && flags->dash == 0)
 			flags->zero = 1;
 		if (format[*i] == '-')
+		{
 			flags->dash = 1;
+			flags->zero = 0;
+		}
 		if (format[*i] == '+')
 			flags->plus = 1;
 		if (format[*i] == ' ')
@@ -79,8 +82,8 @@ void		flags_specifier(t_flags *flags, int *i, const char *format)
 	flags->specifier = format[*i];
 	if (ft_strchr("SDOUC", format[*i]))
 		flags->specifier = ft_tolower(format[*i]);
-	if (flags->modifier == 'h' + 'h')
-		flags->specifier = 'c';
+	if (flags->specifier == 'c')
+		flags->precision = 0;
 	*i = *i + 1;
 }
 
