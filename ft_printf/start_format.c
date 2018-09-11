@@ -48,10 +48,9 @@ int	start_format(t_flags *flags, va_list args)
 
 	if (!(format = (char **)malloc(sizeof(char *))))
 		return (-1);
-	if (!(*format = init_format(flags, args)))
-		return (-1);
-	if (!**format)
-		*format = ft_strnew(1); // POTENTIAL LEAKS TO CHECK
+	*format = init_format(flags, args);
+//	if (!**format)
+//		*format = ft_strnew(1); // POTENTIAL LEAKS TO CHECK
 	if (!(prefix = (char **)malloc(sizeof(char *))))
 		return (-1);
 	*prefix = ft_strnew(1);

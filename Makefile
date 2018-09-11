@@ -51,7 +51,7 @@ tfclean: clean
 	/bin/rm -f a.out 
 	cd libft/ && make fclean
 
-tre: fclean all
+tre: tfclean test 
 
 
 .PHONY: clean fclean all re

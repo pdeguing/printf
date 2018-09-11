@@ -54,11 +54,13 @@ void	format_print(t_flags *flags, char **format, char **prefix, char **suffix)
 	int	len;
 
 	len = ft_strlen(*format);
+	if (flags->null == 1)
+		len = 1;
 	if (len < flags->precision)
 		format_precision(flags, len, prefix);
 	if (flags->plus == 1 && !ft_strchr(*format, '-'))
 		*prefix = ft_strfljoin("+", *prefix);
-	if (flags->space == 1)
+	if (flags->space == 1 && flags->null == 0)
 		*prefix = ft_strfljoin(" ", *prefix);
 	if ((flags->zero == 0 && flags->hash == 1) || flags->specifier == 'p')
 		format_hash(flags, prefix);
