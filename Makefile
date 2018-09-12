@@ -6,7 +6,7 @@
 #    By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/11 16:30:10 by pdeguing          #+#    #+#              #
-#    Updated: 2018/07/13 11:16:02 by pdeguing         ###   ########.fr        #
+#    Updated: 2018/09/11 18:37:18 by pdeguing         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,11 +29,13 @@ $(NAME):
 
 clean:
 	/bin/rm -f $(OBJ)
+	cd libft/ && make clean
 
 fclean: clean
 	/bin/rm -f $(NAME)
 
 re: fclean all
+	cd libft/ && make fclean
 
 # TO RUN TEST
 

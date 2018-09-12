@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 14:29:28 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/08/29 13:16:29 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/09/11 19:06:03 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	start_parsing(int *i, const char *format, va_list args)
 	if (!flags)
 		return (-1);
 	flags_init(flags, i, format);
+	if (flags->error == 1)
+		return (-1);
 	return (start_format(flags, args));
 }
 

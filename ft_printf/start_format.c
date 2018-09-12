@@ -11,7 +11,6 @@ char	*init_format(t_flags *flags, va_list args)
 	if (flags->specifier == '%')
 	{
 		flags->space = 0;
-		flags->minimal_width = 0;
 		return (char_to_str('%'));
 	}
 	if (flags->specifier == 's')

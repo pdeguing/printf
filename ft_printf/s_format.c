@@ -11,7 +11,7 @@ char	*format_s(t_flags *flags, va_list args)
 		format = get_utf_str((wchar_t *)arg); 
 	else
 		format = ft_strdup((char *)arg);
-	if (flags->precision < ft_strlen(format))
+	if (flags->precision >= 0 && flags->precision < ft_strlen(format))
 		ft_strclr(&format[flags->precision]);
 	flags->precision = 0;
 	return (format);	
