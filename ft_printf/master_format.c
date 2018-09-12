@@ -47,7 +47,7 @@ void	format_width(t_flags *flags, int len, char **prefix, char **suffix)
 	else
 		ft_memset(affix, ' ', size);
 	if (flags->dash == 1)
-		*suffix = affix;
+		*suffix = ft_strfjoin(*suffix, affix);
 	else
 		*prefix = ft_strfjoin(affix, *prefix);
 }

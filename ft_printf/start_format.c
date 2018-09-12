@@ -45,6 +45,7 @@ int	start_format(t_flags *flags, va_list args)
 	char	**format;
 	char	**prefix;
 	char	**suffix;
+	int		ret;
 
 	if (!(format = (char **)malloc(sizeof(char *))))
 		return (-1);
@@ -58,7 +59,11 @@ int	start_format(t_flags *flags, va_list args)
 		return (-1);
 	*suffix = ft_strnew(1);
 	format_print(flags, format, prefix, suffix);
-	return (print_format(flags, prefix, format, suffix));
+	ret = print_format(flags, prefix, format, suffix);
+	free(format);
+	free(prefix);
+	free(suffix);
+	return (ret);
 }
 
 // NEED TO CHANGE EVERYTHING TO NOT RETURN THE FORMAT BUT TO ACTUALLY PRINT IT WITH A DIFFERENT ORDER DEPENDING ON THE FLAGS
