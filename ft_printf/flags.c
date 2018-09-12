@@ -115,6 +115,8 @@ void		flags_init(t_flags *flags, int *i, const char *format)
 	{
 		*i = *i + 1;
 		flags->precision = ft_atoi(&format[*i]);
+		if (flags->precision != -1)
+			flags->zero = 0;
 		while (format[*i] && ft_isdigit(format[*i]))
 			*i = *i + 1;
 	}

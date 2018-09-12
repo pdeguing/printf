@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 17:32:32 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/09/12 09:25:07 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/09/12 09:29:04 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ REMEMBER TO CHECK CASE WHERE PRINTF DOES NOT COMPILE CAUSE WARNING OR OTHER STRA
 */
 int		main(void)
 {
-	char	c = 0;
 /*
 	int	*ptr;
 	wchar_t	*str = L"hello";
@@ -40,7 +39,7 @@ int		main(void)
 	printf(TEST3);
 	ft_printf(TEST4);
 	printf(TEST4);*/
-	ft_printf("%p\n", &c);
-	printf("%p\n", &c);
+	ft_printf("%04.2i\n", 42);
+	printf("%04.2i\n", 42);
 	return (0);
 }
