@@ -27,7 +27,7 @@ char	*init_format(t_flags *flags, va_list args)
 			if (flags->specifier != 'o')
 				flags->hash = 0;
 		}
-		if (*format == '0')
+		if (*format == '0' && ft_strlen(format) <= 1)
 			flags->hash = 0;
 		return (format);
 	}
