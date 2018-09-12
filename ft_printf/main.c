@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 17:32:32 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/09/12 09:29:04 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/09/12 10:09:49 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,5 @@ int		main(void)
 	printf(TEST3);
 	ft_printf(TEST4);
 	printf(TEST4);*/
-	ft_printf("%04.2i\n", 42);
-	printf("%04.2i\n", 42);
 	return (0);
 }

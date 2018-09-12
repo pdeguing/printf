@@ -11,7 +11,7 @@ char	*format_c(t_flags *flags, va_list args)
 		return (ft_strnew(1));
 	}
 	if (flags->modifier == 'l')
-		return(get_utf_char((wchar_t)c));
+		return(char_to_str((wchar_t)c));
 	else
 		return (char_to_str(c));
 }

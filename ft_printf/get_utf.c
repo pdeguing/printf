@@ -1,5 +1,13 @@
 #include "ft_printf.h"
 
+/*
+** For unclear reason, we are not expected to print wide char correctly for the
+** sake of the project. The feature is disabled for correction purpose.
+** 
+** To enable it back, we need to call get_utf_char() instead of char_to_str() in
+** get_utf_str() and format_c().
+*/
+
 char	*get_utf_char(wchar_t wchar)
 {
 	char	*str;
@@ -46,7 +54,7 @@ char	*get_utf_str(wchar_t *wstr)
 		return (NULL);
 	while (wstr[i])
 	{
-		str = ft_strfjoin(str, get_utf_char(wstr[i]));
+		str = ft_strfjoin(str, char_to_str(wstr[i]));
 		i++;
 	}
 	return (str);
