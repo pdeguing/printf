@@ -28,7 +28,13 @@ int	print_format(t_flags *flags, char **prefix, char **format, char **suffix)
 	}
 	else
 	{
-		ft_putstr(*format);
+		if (flags->negative == 1 || (flags->sign == 1 && flags->negative == 1))
+		{
+			ft_putstr(*format + 1);
+			printed--;
+		}
+		else
+			ft_putstr(*format);
 		printed += ft_strlen(*format);
 	}
 	ft_putstr(*suffix);

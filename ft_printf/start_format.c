@@ -25,7 +25,8 @@ char	*init_format(t_flags *flags, va_list args)
 		{
 			ft_strdel(&format);
 			format = ft_strnew(1);
-			flags->hash = 0;
+			if (flags->specifier != 'o')
+				flags->hash = 0;
 		}
 		if (*format == '0')
 			flags->hash = 0;

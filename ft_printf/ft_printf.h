@@ -26,7 +26,8 @@ typedef struct		s_flags
 	int		hash;
 	int		zero;
 	int		dash;
-	int		plus;
+	int		sign;
+	int		negative;
 	int		space;
 	int		minimal_width;
 	int		precision;

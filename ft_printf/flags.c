@@ -14,7 +14,8 @@ t_flags		*flags_new()
 	new->hash = 0;
 	new->zero = 0;
 	new->dash = 0;
-	new->plus = 0;
+	new->sign = 0;
+	new->negative = 0;
 	new->space = 0;
 	new->minimal_width = 0;
 	new->precision = -1;
@@ -44,7 +45,7 @@ void		flags_set(t_flags *flags, int *i, const char *format)
 			flags->zero = 0;
 		}
 		if (format[*i] == '+')
-			flags->plus = 1;
+			flags->sign = 1;
 		if (format[*i] == ' ')
 			flags->space = 1;
 		*i = *i + 1;
@@ -85,6 +86,11 @@ void		flags_specifier(t_flags *flags, int *i, const char *format)
 		flags->specifier = ft_tolower(format[*i]);
 	if (flags->specifier == 'c')
 		flags->precision = 0;
+	if (flags->specifier != 'i' && flags->specifier != 'd')
+	{
+		flags->sign = 0;
+		flags->space = 0;
+	}
 	*i = *i + 1;
 }
 

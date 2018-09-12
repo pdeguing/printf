@@ -39,7 +39,7 @@ int		main(void)
 	printf(TEST3);
 	ft_printf(TEST4);
 	printf(TEST4);*/
-	ft_printf("@moulitest: %c\n", 0);
-	printf("@moulitest: %c\n", 0);
+	ft_printf("%U\n", 42);
+	printf("%U\n", 42);
 	return (0);
 }
