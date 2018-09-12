@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 13:09:12 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/07/20 10:17:36 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/09/12 12:25:45 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 
-int				ft_strlen(const char *s);
+int					ft_strlen(const char *s);
 
 int					ft_islower(int c);
 int					ft_isupper(int c);
@@ -98,8 +98,8 @@ t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
 int					ft_wrdc(char *s, char c);
 int					ft_wrdlen(char *s, char c);
-int				ft_intlen(long long n, int base);
-int				ft_uintlen(unsigned long long n, int base);
+int					ft_intlen(long long n, int base);
+int					ft_uintlen(unsigned long long n, int base);
 char				*ft_capitalize(char *str);
 
 #endif
