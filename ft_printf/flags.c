@@ -32,8 +32,7 @@ t_flags		*flags_new()
 
 void		flags_set(t_flags *flags, int *i, const char *format)
 {
-
-	while (ft_strchr("#0-+ ", format[*i]))
+	while (format[*i] && ft_strchr("#0-+ ", format[*i]))
 	{
 		if (format[*i] == '#')
 			flags->hash = 1;
@@ -58,17 +57,16 @@ void		flags_set(t_flags *flags, int *i, const char *format)
 
 void		flags_modifier(t_flags *flags, int *i, const char *format)
 {
-	if (ft_strchr("hljz", format[*i]))
+	if (format[*i] && ft_strchr("hljz", format[*i]))
 	{
 		flags->modifier = format[*i];
 		*i = *i + 1;
-		if (ft_strchr("hljz", format[*i]))
+		if (format[*i] && ft_strchr("hljz", format[*i]))
 		{
 			flags->modifier += format[*i];
 			*i = *i + 1;
 		}
 	}
-
 }
 
 /*
@@ -77,11 +75,12 @@ void		flags_modifier(t_flags *flags, int *i, const char *format)
 
 void		flags_specifier(t_flags *flags, int *i, const char *format)
 {
-	if (ft_strchr("SDOUC", format[*i]))
+	if (format[*i] && ft_strchr("SDOUC", format[*i]))
 		flags->modifier = 'l';
-	if (!ft_strchr("sSpdDioOuUxXcC%", format[*i]))
+	if (!format[*i] || !ft_strchr("sSpdDioOuUxXcC%", format[*i]))
 		flags->error = 1;
-	flags->specifier = format[*i];
+	else
+		flags->specifier = format[*i];
 	if (ft_strchr("SDOUC", format[*i]))
 		flags->specifier = ft_tolower(format[*i]);
 	if (flags->specifier == 'c')
@@ -100,20 +99,26 @@ void		flags_specifier(t_flags *flags, int *i, const char *format)
 
 void		flags_init(t_flags *flags, int *i, const char *format)
 {
+	if (!format[*i])
+	{
+		flags->error = 1;
+		return ;
+	}
 	flags_set(flags, i, format);
 	if (ft_isdigit(format[*i]))
 	{
 		flags->minimal_width = ft_atoi(&format[*i]);
-		while (ft_isdigit(format[*i]))
+		while (format[*i] && ft_isdigit(format[*i]))
 			*i = *i + 1;
 	}
 	if (format[*i] == '.')
 	{
 		*i = *i + 1;
 		flags->precision = ft_atoi(&format[*i]);
-		while (ft_isdigit(format[*i]))
+		while (format[*i] && ft_isdigit(format[*i]))
 			*i = *i + 1;
 	}
-	flags_modifier(flags, i, format);
+	if (format[*i])
+		flags_modifier(flags, i, format);
 	flags_specifier(flags, i, format);
 }
