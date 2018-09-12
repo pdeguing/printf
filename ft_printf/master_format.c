@@ -85,6 +85,6 @@ void	format_print(t_flags *flags, char **format, char **prefix, char **suffix)
 		format_width(flags, len, prefix, suffix);
 	if (flags->zero == 1)
 		format_sign(flags, prefix);	
-	if ((flags->zero == 1 && flags->hash == 1) || flags->specifier == 'p')
+	if ((flags->zero == 1 && flags->hash == 1))
 		format_hash(flags, prefix);
 }
