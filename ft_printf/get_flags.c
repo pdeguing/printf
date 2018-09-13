@@ -1,30 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_flags.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/13 11:11:16 by pdeguing          #+#    #+#             */
+/*   Updated: 2018/09/13 11:11:17 by pdeguing         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
-
-/*
-** Creating the structure to hold flags informations
-*/
-
-t_flags		*flags_new()
-{
-	t_flags	*new;
-
-	new = (t_flags *)malloc(sizeof(t_flags));
-	if (!new)
-		return (NULL);
-	new->hash = 0;
-	new->zero = 0;
-	new->dash = 0;
-	new->sign = 0;
-	new->negative = 0;
-	new->space = 0;
-	new->minimal_width = 0;
-	new->precision = -1;
-	new->modifier = 0;
-	new->specifier = 0;
-	new->null = 0;
-	new->error = 0;
-	return (new);
-}
 
 /*
 ** Setting bolean for each present flag

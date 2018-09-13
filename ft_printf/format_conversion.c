@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   format_conversion.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/13 11:10:51 by pdeguing          #+#    #+#             */
+/*   Updated: 2018/09/13 11:14:53 by pdeguing         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 void	format_hash(t_flags *flags, char **prefix)
@@ -20,7 +32,7 @@ void	format_hash(t_flags *flags, char **prefix)
 void	format_precision(t_flags *flags, int len, char **prefix)
 {
 	char	*affix;
-	int	size;
+	int		size;
 
 	size = flags->precision - len;
 	if (!(affix = ft_strnew(size)))
@@ -33,14 +45,14 @@ void	format_precision(t_flags *flags, int len, char **prefix)
 void	format_width(t_flags *flags, int len, char **prefix, char **suffix)
 {
 	char	*affix;
-	int	size;
+	int		size;
 
 	size = flags->minimal_width - len;
 	if (flags->hash == 1 && flags->zero == 1)
 		size -= 2;
-	if ((flags->sign == 1 || flags->negative == 1) && flags->zero == 1 )
+	if ((flags->sign == 1 || flags->negative == 1) && flags->zero == 1)
 		size--;
-	if(!(affix = ft_strnew(size)))
+	if (!(affix = ft_strnew(size)))
 		return ;
 	if (flags->zero == 1)
 		ft_memset(affix, '0', size);
@@ -60,7 +72,7 @@ void	format_sign(t_flags *flags, char **prefix)
 		*prefix = ft_strfljoin("+", *prefix);
 }
 
-void	format_print(t_flags *flags, char **format, char **prefix, char **suffix)
+void	format_conversion(t_flags *flags, char **format, char **prefix, char **suffix)
 {
 	int	len;
 
@@ -79,12 +91,12 @@ void	format_print(t_flags *flags, char **format, char **prefix, char **suffix)
 	if ((flags->zero == 0 && flags->hash == 1) || flags->specifier == 'p')
 		format_hash(flags, prefix);
 	if (flags->zero == 0)
-		format_sign(flags, prefix);	
+		format_sign(flags, prefix);
 	len += ft_strlen(*prefix);
 	if (len < flags->minimal_width)
 		format_width(flags, len, prefix, suffix);
 	if (flags->zero == 1)
-		format_sign(flags, prefix);	
+		format_sign(flags, prefix);
 	if ((flags->zero == 1 && flags->hash == 1))
 		format_hash(flags, prefix);
 }

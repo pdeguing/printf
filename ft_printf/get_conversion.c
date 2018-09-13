@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_conversion.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/13 11:11:03 by pdeguing          #+#    #+#             */
+/*   Updated: 2018/09/13 11:21:54 by pdeguing         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 /*
@@ -11,12 +23,12 @@ char	*init_format(t_flags *flags, va_list args)
 	if (flags->specifier == '%')
 	{
 		flags->space = 0;
-		return (char_to_str('%'));
+		return (ft_ctostr('%'));
 	}
 	if (flags->specifier == 's')
-		return (format_s(flags, args));
+		return (format_str(flags, args));
 	if (flags->specifier == 'c')
-		return (format_c(flags, args));
+		return (format_char(flags, args));
 	if (ft_strchr("diouxX", flags->specifier))
 	{
 		format = format_int(flags, args);
@@ -40,7 +52,7 @@ char	*init_format(t_flags *flags, va_list args)
 ** Formatting considering all specified options and printing the final format
 */
 
-int	start_format(t_flags *flags, va_list args)
+int		get_conversion(t_flags *flags, va_list args)
 {
 	char	**format;
 	char	**prefix;
@@ -50,20 +62,16 @@ int	start_format(t_flags *flags, va_list args)
 	if (!(format = (char **)malloc(sizeof(char *))))
 		return (-1);
 	*format = init_format(flags, args);
-//	if (!**format)
-//		*format = ft_strnew(1); // POTENTIAL LEAKS TO CHECK
 	if (!(prefix = (char **)malloc(sizeof(char *))))
 		return (-1);
 	*prefix = ft_strnew(1);
 	if (!(suffix = (char **)malloc(sizeof(char *))))
 		return (-1);
 	*suffix = ft_strnew(1);
-	format_print(flags, format, prefix, suffix);
+	format_conversion(flags, format, prefix, suffix);
 	ret = print_format(flags, prefix, format, suffix);
 	free(format);
 	free(prefix);
 	free(suffix);
 	return (ret);
 }
-
-// NEED TO CHANGE EVERYTHING TO NOT RETURN THE FORMAT BUT TO ACTUALLY PRINT IT WITH A DIFFERENT ORDER DEPENDING ON THE FLAGS

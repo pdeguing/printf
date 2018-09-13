@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_format.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/13 10:24:49 by pdeguing          #+#    #+#             */
+/*   Updated: 2018/09/13 10:49:12 by pdeguing         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 /*
@@ -10,7 +22,7 @@
 ** We adopt this method as it makes the printing of NULL characters easier and
 ** should accelerate drastically the speed of the function as we will reduce
 ** memory allocation and freeing.
-** 
+**
 ** We will create a bunch of strings as affix and print them.
 ** If character is 0 we will print '\0' instead of format.
 */

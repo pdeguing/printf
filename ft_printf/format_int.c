@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   format_int.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/13 11:11:50 by pdeguing          #+#    #+#             */
+/*   Updated: 2018/09/13 11:11:51 by pdeguing         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 char	*format_hh(t_flags *flags, va_list args)
@@ -29,7 +41,6 @@ char	*format_short(t_flags *flags, va_list args)
 		return (ft_capitalize(ft_utoa((unsigned short)va_arg(args, int), 16)));
 	return (NULL);
 }
-
 
 char	*format_long(t_flags *flags, va_list args)
 {
@@ -75,7 +86,6 @@ char	*format_z(t_flags *flags, va_list args)
 		return (ft_capitalize(ft_utoa(va_arg(args, size_t), 16)));
 	return (NULL);
 }
-
 
 char	*format_int(t_flags *flags, va_list args)
 {
