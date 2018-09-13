@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 19:09:41 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/09/13 13:59:44 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/09/13 14:30:59 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		ft_printf(const char *format, ...)
 			i++;
 			char_count += init_conversion(&i, format, args_list);
 		}
-		else
+		else if (format[i])
 		{
 			ft_putchar(format[i]);
 			char_count++;

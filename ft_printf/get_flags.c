@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 12:08:26 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/09/13 12:08:27 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/09/13 14:30:58 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,22 +61,24 @@ void		flags_modifier(t_f *f, int *i, const char *format)
 
 void		flags_specifier(t_f *f, int *i, const char *format)
 {
-	if (format[*i] && ft_strchr("SDOUC", format[*i]))
-		f->modifier = 'l';
 	if (!format[*i] || !ft_strchr("sSpdDioOuUxXcC%", format[*i]))
 		f->error = 1;
 	else
-		f->specifier = format[*i];
-	if (ft_strchr("SDOUC", format[*i]))
-		f->specifier = ft_tolower(format[*i]);
-	if (f->specifier == 'c')
-		f->precision = 0;
-	if (f->specifier != 'i' && f->specifier != 'd')
 	{
-		f->sign = 0;
-		f->space = 0;
+		if (ft_strchr("SDOUC", format[*i]))
+			f->modifier = 'l';
+		f->specifier = format[*i];
+		if (ft_strchr("SDOUC", format[*i]))
+			f->specifier = ft_tolower(format[*i]);
+		if (f->specifier == 'c')
+			f->precision = 0;
+		if (f->specifier != 'i' && f->specifier != 'd')
+		{
+			f->sign = 0;
+			f->space = 0;
+		}
+		*i = *i + 1;
 	}
-	*i = *i + 1;
 }
 
 /*

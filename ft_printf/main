@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 17:32:32 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/09/13 13:58:11 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/09/13 14:26:23 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ int		main(void)
 	printf(TEST4);
 	ft_printf("\n");
 	ft_printf("%%\n");
-	*/
 	ft_printf("%d\n", 42);
+	*/
+	ft_printf("% ");
 	/*
 	ft_printf("%d%d\n", 42, 41);
 	ft_printf("%d%d%d\n", 42, 43, 44);
