@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 17:30:59 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/09/13 11:59:24 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/09/13 14:15:59 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ typedef struct	s_f
 char			*get_utf_char(wchar_t wchar);
 char			*get_utf_str(wchar_t *wstr);
 
+char			*format_hh(t_f *f, va_list args);
+char			*format_short(t_f *f, va_list args);
+char			*format_long(t_f *f, va_list args);
+char			*format_longlong(t_f *f, va_list args);
+char			*format_z(t_f *f, va_list args);
 char			*format_char(t_f *f, va_list args);
 char			*format_str(t_f *f, va_list args);
 char			*format_int(t_f *f, va_list args);

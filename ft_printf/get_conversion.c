@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 11:11:03 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/09/13 12:01:17 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/09/13 14:12:55 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,9 @@ char	*init_format(t_f *f, va_list args)
 {
 	char	*format;
 
-	if (f->specifier == '%')
-	{
-		f->space = 0;
-		return (ft_ctostr('%'));
-	}
 	if (f->specifier == 's')
 		return (format_str(f, args));
-	if (f->specifier == 'c')
+	if (f->specifier == 'c' || f->specifier == '%')
 		return (format_char(f, args));
 	if (ft_strchr("diouxX", f->specifier))
 	{
@@ -36,8 +31,7 @@ char	*init_format(t_f *f, va_list args)
 		{
 			ft_strdel(&format);
 			format = ft_strnew(1);
-			if (f->specifier != 'o')
-				f->hash = 0;
+			f->hash = (f->specifier != 'o') ? 0 : f->hash;
 		}
 		if (*format == '0' && ft_strlen(format) <= 1)
 			f->hash = 0;
