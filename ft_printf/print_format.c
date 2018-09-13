@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 10:24:49 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/09/13 12:03:29 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/09/13 14:06:30 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,11 @@
 ** If character is 0 we will print '\0' instead of format.
 */
 
-int	print_format(t_f *f, char **prefix, char **format, char **suffix)
+int		put_format(t_f *f, char **format)
 {
-	int	printed;
+	int		printed;
 
-	ft_putstr(*prefix);
-	printed = ft_strlen(*prefix);
+	printed = 0;
 	if (f->null == 1 && f->specifier == 'c')
 	{
 		ft_putchar(0);
@@ -49,6 +48,16 @@ int	print_format(t_f *f, char **prefix, char **format, char **suffix)
 			ft_putstr(*format);
 		printed += ft_strlen(*format);
 	}
+	return (printed);
+}
+
+int		print_format(t_f *f, char **prefix, char **format, char **suffix)
+{
+	int	printed;
+
+	ft_putstr(*prefix);
+	printed = ft_strlen(*prefix);
+	printed += put_format(f, format);
 	ft_putstr(*suffix);
 	printed += ft_strlen(*suffix);
 	ft_strdel(prefix);
