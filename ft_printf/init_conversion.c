@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 11:11:26 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/09/13 12:08:55 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/09/13 13:58:33 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ int		init_conversion(int *i, const char *format, va_list args)
 
 	f = f_new();
 	if (!f)
-		return (-1);
+		return (0);
 	flags_init(f, i, format);
 	if (f->error == 1)
 	{
 		free(f);
 		f = NULL;
-		return (-1);
+		return (0);
 	}
 	ret = get_conversion(f, args);
 	free(f);

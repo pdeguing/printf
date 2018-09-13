@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 19:09:41 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/09/13 11:30:38 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/09/13 13:59:44 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,23 @@ int		ft_printf(const char *format, ...)
 {
 	va_list	args_list;
 	int		char_count;
-	int		ret;
 	int		i;
 
 	va_start(args_list, format);
 	i = 0;
 	char_count = 0;
-	ret = 0;
 	while (format[i])
 	{
-		if (format[i] != '%')
+		if (format[i] == '%')
+		{
+			i++;
+			char_count += init_conversion(&i, format, args_list);
+		}
+		else
 		{
 			ft_putchar(format[i]);
 			char_count++;
 			i++;
-		}
-		else
-		{
-			i++;
-			if ((ret = init_conversion(&i, format, args_list)) == -1)
-				return (char_count);
-			else
-				char_count += ret;
 		}
 	}
 	va_end(args_list);
