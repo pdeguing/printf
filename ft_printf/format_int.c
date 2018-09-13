@@ -6,108 +6,108 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 11:11:50 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/09/13 11:11:51 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/09/13 12:00:39 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*format_hh(t_flags *flags, va_list args)
+char	*format_hh(t_f *f, va_list args)
 {
-	if (flags->specifier == 'd' || flags->specifier == 'i')
+	if (f->specifier == 'd' || f->specifier == 'i')
 		return (ft_itoa((char)va_arg(args, int), 10));
-	if (flags->specifier == 'o')
+	if (f->specifier == 'o')
 		return (ft_utoa((unsigned char)va_arg(args, int), 8));
-	if (flags->specifier == 'u')
+	if (f->specifier == 'u')
 		return (ft_utoa((unsigned char)va_arg(args, int), 10));
-	if (flags->specifier == 'x')
+	if (f->specifier == 'x')
 		return (ft_utoa((unsigned char)va_arg(args, int), 16));
-	if (flags->specifier == 'X')
+	if (f->specifier == 'X')
 		return (ft_capitalize(ft_utoa((unsigned char)va_arg(args, int), 16)));
 	return (NULL);
 }
 
-char	*format_short(t_flags *flags, va_list args)
+char	*format_short(t_f *f, va_list args)
 {
-	if (flags->specifier == 'd' || flags->specifier == 'i')
+	if (f->specifier == 'd' || f->specifier == 'i')
 		return (ft_itoa((short)va_arg(args, int), 10));
-	if (flags->specifier == 'o')
+	if (f->specifier == 'o')
 		return (ft_utoa((unsigned short)va_arg(args, int), 8));
-	if (flags->specifier == 'u')
+	if (f->specifier == 'u')
 		return (ft_utoa((unsigned short)va_arg(args, int), 10));
-	if (flags->specifier == 'x')
+	if (f->specifier == 'x')
 		return (ft_utoa((unsigned short)va_arg(args, int), 16));
-	if (flags->specifier == 'X')
+	if (f->specifier == 'X')
 		return (ft_capitalize(ft_utoa((unsigned short)va_arg(args, int), 16)));
 	return (NULL);
 }
 
-char	*format_long(t_flags *flags, va_list args)
+char	*format_long(t_f *f, va_list args)
 {
-	if (flags->specifier == 'd' || flags->specifier == 'i')
+	if (f->specifier == 'd' || f->specifier == 'i')
 		return (ft_itoa(va_arg(args, long), 10));
-	if (flags->specifier == 'o')
+	if (f->specifier == 'o')
 		return (ft_utoa(va_arg(args, unsigned long), 8));
-	if (flags->specifier == 'u')
+	if (f->specifier == 'u')
 		return (ft_utoa(va_arg(args, unsigned long), 10));
-	if (flags->specifier == 'x')
+	if (f->specifier == 'x')
 		return (ft_utoa(va_arg(args, unsigned long), 16));
-	if (flags->specifier == 'X')
+	if (f->specifier == 'X')
 		return (ft_capitalize(ft_utoa(va_arg(args, unsigned long), 16)));
 	return (NULL);
 }
 
-char	*format_longlong(t_flags *flags, va_list args)
+char	*format_longlong(t_f *f, va_list args)
 {
-	if (flags->specifier == 'd' || flags->specifier == 'i')
+	if (f->specifier == 'd' || f->specifier == 'i')
 		return (ft_itoa(va_arg(args, long long), 10));
-	if (flags->specifier == 'o')
+	if (f->specifier == 'o')
 		return (ft_utoa(va_arg(args, unsigned long long), 8));
-	if (flags->specifier == 'u')
+	if (f->specifier == 'u')
 		return (ft_utoa(va_arg(args, unsigned long long), 10));
-	if (flags->specifier == 'x')
+	if (f->specifier == 'x')
 		return (ft_utoa(va_arg(args, unsigned long long), 16));
-	if (flags->specifier == 'X')
+	if (f->specifier == 'X')
 		return (ft_capitalize(ft_utoa(va_arg(args, unsigned long long), 16)));
 	return (NULL);
 }
 
-char	*format_z(t_flags *flags, va_list args)
+char	*format_z(t_f *f, va_list args)
 {
-	if (flags->specifier == 'd' || flags->specifier == 'i')
+	if (f->specifier == 'd' || f->specifier == 'i')
 		return (ft_itoa(va_arg(args, ssize_t), 10));
-	if (flags->specifier == 'o')
+	if (f->specifier == 'o')
 		return (ft_utoa(va_arg(args, size_t), 8));
-	if (flags->specifier == 'u')
+	if (f->specifier == 'u')
 		return (ft_utoa(va_arg(args, size_t), 10));
-	if (flags->specifier == 'x')
+	if (f->specifier == 'x')
 		return (ft_utoa(va_arg(args, size_t), 16));
-	if (flags->specifier == 'X')
+	if (f->specifier == 'X')
 		return (ft_capitalize(ft_utoa(va_arg(args, size_t), 16)));
 	return (NULL);
 }
 
-char	*format_int(t_flags *flags, va_list args)
+char	*format_int(t_f *f, va_list args)
 {
-	if (flags->modifier == 'h' + 'h')
-		return (format_hh(flags, args));
-	if (flags->modifier == 'h')
-		return (format_short(flags, args));
-	if (flags->modifier == 'l' || flags->modifier == 'j')
-		return (format_long(flags, args));
-	if (flags->modifier == 'l' + 'l')
-		return (format_longlong(flags, args));
-	if (flags->modifier == 'z')
-		return (format_z(flags, args));
-	if (flags->specifier == 'd' || flags->specifier == 'i')
+	if (f->modifier == 'h' + 'h')
+		return (format_hh(f, args));
+	if (f->modifier == 'h')
+		return (format_short(f, args));
+	if (f->modifier == 'l' || f->modifier == 'j')
+		return (format_long(f, args));
+	if (f->modifier == 'l' + 'l')
+		return (format_longlong(f, args));
+	if (f->modifier == 'z')
+		return (format_z(f, args));
+	if (f->specifier == 'd' || f->specifier == 'i')
 		return (ft_itoa(va_arg(args, int), 10));
-	if (flags->specifier == 'o')
+	if (f->specifier == 'o')
 		return (ft_utoa(va_arg(args, unsigned int), 8));
-	if (flags->specifier == 'u')
+	if (f->specifier == 'u')
 		return (ft_utoa(va_arg(args, unsigned int), 10));
-	if (flags->specifier == 'x')
+	if (f->specifier == 'x')
 		return (ft_utoa(va_arg(args, unsigned int), 16));
-	if (flags->specifier == 'X')
+	if (f->specifier == 'X')
 		return (ft_capitalize(ft_utoa(va_arg(args, unsigned int), 16)));
 	return (NULL);
 }

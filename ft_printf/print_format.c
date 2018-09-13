@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 10:24:49 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/09/13 10:49:12 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/09/13 12:03:29 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 ** This function takes the initial argument format after conversion as input.
 ** Instead of creating a buffer to print, it will print each prefix/suffix
-** and the format in a different order depending on the flags.
+** and the format in a different order depending on the f.
 **
 ** Returns the number of characters printed.
 **
@@ -27,20 +27,20 @@
 ** If character is 0 we will print '\0' instead of format.
 */
 
-int	print_format(t_flags *flags, char **prefix, char **format, char **suffix)
+int	print_format(t_f *f, char **prefix, char **format, char **suffix)
 {
 	int	printed;
 
 	ft_putstr(*prefix);
 	printed = ft_strlen(*prefix);
-	if (flags->null == 1 && flags->specifier == 'c')
+	if (f->null == 1 && f->specifier == 'c')
 	{
 		ft_putchar(0);
 		printed++;
 	}
 	else
 	{
-		if (flags->negative == 1 || (flags->sign == 1 && flags->negative == 1))
+		if (f->neg == 1 || (f->sign == 1 && f->neg == 1))
 		{
 			ft_putstr(*format + 1);
 			printed--;

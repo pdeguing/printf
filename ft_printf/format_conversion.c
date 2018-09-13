@@ -6,21 +6,21 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 11:10:51 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/09/13 11:14:53 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/09/13 11:57:18 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	format_hash(t_flags *flags, char **prefix)
+void	format_hash(t_f *f, char **prefix)
 {
 	char	*affix;
 
-	if (flags->specifier == 'o')
+	if (f->specifier == 'o')
 		affix = ft_strdup("0");
-	else if (flags->specifier == 'x' || flags->specifier == 'p')
+	else if (f->specifier == 'x' || f->specifier == 'p')
 		affix = ft_strdup("0x");
-	else if (flags->specifier == 'X')
+	else if (f->specifier == 'X')
 		affix = ft_strdup("0X");
 	else
 		return ;
@@ -29,74 +29,74 @@ void	format_hash(t_flags *flags, char **prefix)
 	*prefix = ft_strfjoin(affix, *prefix);
 }
 
-void	format_precision(t_flags *flags, int len, char **prefix)
+void	format_precision(t_f *f, int len, char **prefix)
 {
 	char	*affix;
 	int		size;
 
-	size = flags->precision - len;
+	size = f->precision - len;
 	if (!(affix = ft_strnew(size)))
 		return ;
 	ft_memset(affix, '0', size);
 	*prefix = ft_strfjoin(affix, *prefix);
-	flags->zero = 0;
+	f->zero = 0;
 }
 
-void	format_width(t_flags *flags, int len, char **prefix, char **suffix)
+void	format_width(t_f *f, int len, char **prefix, char **suffix)
 {
 	char	*affix;
 	int		size;
 
-	size = flags->minimal_width - len;
-	if (flags->hash == 1 && flags->zero == 1)
+	size = f->minimal_width - len;
+	if (f->hash == 1 && f->zero == 1)
 		size -= 2;
-	if ((flags->sign == 1 || flags->negative == 1) && flags->zero == 1)
+	if ((f->sign == 1 || f->neg == 1) && f->zero == 1)
 		size--;
 	if (!(affix = ft_strnew(size)))
 		return ;
-	if (flags->zero == 1)
+	if (f->zero == 1)
 		ft_memset(affix, '0', size);
 	else
 		ft_memset(affix, ' ', size);
-	if (flags->dash == 1)
+	if (f->dash == 1)
 		*suffix = ft_strfjoin(*suffix, affix);
 	else
 		*prefix = ft_strfjoin(affix, *prefix);
 }
 
-void	format_sign(t_flags *flags, char **prefix)
+void	format_sign(t_f *f, char **prefix)
 {
-	if (flags->negative == 1)
+	if (f->neg == 1)
 		*prefix = ft_strfljoin("-", *prefix);
-	else if (flags->sign == 1)
+	else if (f->sign == 1)
 		*prefix = ft_strfljoin("+", *prefix);
 }
 
-void	format_conversion(t_flags *flags, char **format, char **prefix, char **suffix)
+void	format_conversion(t_f *f, char **fmt, char **pref, char **suf)
 {
 	int	len;
 
-	len = ft_strlen(*format);
-	if (ft_strchr(*format, '-'))
+	len = ft_strlen(*fmt);
+	if (ft_strchr(*fmt, '-'))
 	{
-		flags->negative = 1;
+		f->neg = 1;
 		len--;
 	}
-	if (flags->null == 1)
+	if (f->null == 1)
 		len = 1;
-	if (len < flags->precision)
-		format_precision(flags, len, prefix);
-	if (flags->space == 1 && flags->null == 0 && flags->negative == 0 && flags->sign == 0)
-		*prefix = ft_strfljoin(" ", *prefix);
-	if ((flags->zero == 0 && flags->hash == 1) || flags->specifier == 'p')
-		format_hash(flags, prefix);
-	if (flags->zero == 0)
-		format_sign(flags, prefix);
-	len += ft_strlen(*prefix);
-	if (len < flags->minimal_width)
-		format_width(flags, len, prefix, suffix);
-	if (flags->zero == 1)
-		format_sign(flags, prefix);
-	if ((flags->zero == 1 && flags->hash == 1))
-		format_hash(flags, prefix);
+	if (len < f->precision)
+		format_precision(f, len, pref);
+	if (f->space == 1 && f->null == 0 && f->neg == 0 && f->sign == 0)
+		*pref = ft_strfljoin(" ", *pref);
+	if ((f->zero == 0 && f->hash == 1) || f->specifier == 'p')
+		format_hash(f, pref);
+	if (f->zero == 0)
+		format_sign(f, pref);
+	len += ft_strlen(*pref);
+	if (len < f->minimal_width)
+		format_width(f, len, pref, suf);
+	if (f->zero == 1)
+		format_sign(f, pref);
+	if ((f->zero == 1 && f->hash == 1))
+		format_hash(f, pref);
 }

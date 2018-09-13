@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/11 17:30:59 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/09/13 11:16:20 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/09/13 11:59:24 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@
 ** relevant for formating.
 */
 
-typedef struct	s_flags
+typedef struct	s_f
 {
 	int			hash;
 	int			zero;
 	int			dash;
 	int			sign;
-	int			negative;
+	int			neg;
 	int			space;
 	int			minimal_width;
 	int			precision;
@@ -35,23 +35,23 @@ typedef struct	s_flags
 	char		specifier;
 	int			null;
 	int			error;
-}				t_flags;
+}				t_f;
 
 char			*get_utf_char(wchar_t wchar);
 char			*get_utf_str(wchar_t *wstr);
 
-char			*format_char(t_flags *flags, va_list args);
-char			*format_str(t_flags *flags, va_list args);
-char			*format_int(t_flags *flags, va_list args);
+char			*format_char(t_f *f, va_list args);
+char			*format_str(t_f *f, va_list args);
+char			*format_int(t_f *f, va_list args);
 
-t_flags			*flags_new(void);
-void			flags_init(t_flags *flags, int *i, const char *format);
+t_f				*f_new(void);
+void			flags_init(t_f *f, int *i, const char *fmt);
 
-int				print_format(t_flags *flags, char **prefix, char **format, char **suffix);
-void			format_conversion(t_flags *flags, char **format, char **prefix, char **suffix);
-int				get_conversion(t_flags *flags, va_list args);
+int				print_format(t_f *f, char **pref, char **fmt, char **suf);
+void			format_conversion(t_f *f, char **fmt, char **pref, char **suf);
+int				get_conversion(t_f *f, va_list args);
 
-int				init_conversion(int *i, const char *format, va_list args);
-int				ft_printf(const char *format, ...);
+int				init_conversion(int *i, const char *fmt, va_list args);
+int				ft_printf(const char *fmt, ...);
 
 #endif

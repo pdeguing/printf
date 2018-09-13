@@ -6,24 +6,24 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 11:11:39 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/09/13 11:22:54 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/09/13 12:00:17 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*format_char(t_flags *flags, va_list args)
+char	*format_char(t_f *f, va_list args)
 {
 	int	c;
 
 	c = va_arg(args, int);
 	if (!c || c == 0)
 	{
-		flags->null = 1;
+		f->null = 1;
 		return (ft_strnew(1));
 	}
-	if (flags->modifier == 'l')
-		return(ft_ctostr((wchar_t)c));
+	if (f->modifier == 'l')
+		return (ft_ctostr((wchar_t)c));
 	else
 		return (ft_ctostr(c));
 }
