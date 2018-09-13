@@ -6,7 +6,7 @@
 #    By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/11 16:30:10 by pdeguing          #+#    #+#              #
-#    Updated: 2018/09/13 14:54:06 by pdeguing         ###   ########.fr        #
+#    Updated: 2018/09/13 14:58:05 by pdeguing         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRC		= ft_printf/format_char.c \
 		  ft_printf/format_int.c \
 		  ft_printf/format_int_helpers.c \
 		  ft_printf/format_str.c \
-		  ft_printf.c \
+		  ft_printf/ft_printf.c \
 		  ft_printf/get_conversion.c \
 		  ft_printf/get_flags.c \
 		  ft_printf/get_utf.c \
@@ -92,7 +92,8 @@ SRC		= ft_printf/format_char.c \
 		  libft/ft_uintlen.c\
 		  libft/ft_utoa.c\
 		  libft/ft_wrdc.c\
-		  libft/ft_wrdlen.c\
+		  libft/ft_wrdlen.c
+
 OBJ		= *.o
 TESTSRC = ft_printf/*.c
 INCLUDE = -I /libft
